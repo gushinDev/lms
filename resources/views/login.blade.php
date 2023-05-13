@@ -16,15 +16,17 @@
                     <h4>Login</h4>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="{{route('login')}}">
+                        @csrf
                         <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                                   placeholder="Enter email">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username"
+                                   placeholder="Enter username"
+                                name="username">
                         </div>
                         <div class="form-group mt-3">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                         </div>
                         <div class="form-group form-check mt-3 mb-3">
                             <input type="checkbox" class="form-check-input" id="remember-me">
