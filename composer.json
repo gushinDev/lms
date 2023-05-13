@@ -55,7 +55,7 @@
         ],
         "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml app/",
         "phpmd": "./vendor/bin/phpmd app/,tests/ text phpmd.xml",
-        "phpstan": "php artisan code:analyse",
+        "phpstan": "./vendor/bin/phpstan analyse",
         "csfixer": "./vendor/bin/php-cs-fixer --verbose fix"
     },
     "extra": {
