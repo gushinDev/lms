@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ruleset name="Laravel">
+    <description>Custom coding standard for Laravel projects</description>
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <rule ref="PSR2">
+        <exclude name="PSR2.Classes.PropertyDeclaration"/>
+        <exclude name="PSR2.Methods.FunctionCallSignature"/>
+        <exclude name="PSR2.Methods.FunctionClosingBrace"/>
+        <exclude name="PSR2.Methods.MethodDeclaration"/>
+        <exclude name="PSR2.ControlStructures.ControlStructureSpacing"/>
+        <exclude name="PSR2.ControlStructures.ElseIfDeclaration"/>
+    </rule>
+    <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
+        <property name="allow_single_line_closure" value="true"/>
+    </rule>
+    <rule ref="Squiz.Classes.ValidClassName">
+        <property name="format" value="[A-Z][a-zA-Z0-9]+"/>
+    </rule>
+    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
+    <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
+    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing"/>
+    <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <exclude-pattern>bootstrap/cache/*</exclude-pattern>
+    <exclude-pattern>storage/*</exclude-pattern>
+    <exclude-pattern>vendor/*</exclude-pattern>
+</ruleset>
