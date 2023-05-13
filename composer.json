@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "gushindev/lms",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Lms pet project",
     "keywords": [
         "framework",
         "laravel"

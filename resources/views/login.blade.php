@@ -42,6 +42,5 @@
         </div>
     </div>
 </div>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 </body>
 </html>
