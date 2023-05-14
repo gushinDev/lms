@@ -19,7 +19,6 @@ services:
             - db
             - redis
             - rabbitmq
-
     db:
         image: mysql:latest
         container_name: db
@@ -90,6 +89,26 @@ services:
             - '15672:15672'
         networks:
             - app-network
+    worker:
+        build:
+            args:
+                user: sammy
+                uid: 1000
+            context: ./docker-compose
+            dockerfile: Dockerfile
+        image: app-image
+        container_name: worker
+        restart: unless-stopped
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        networks:
+            - app-network
+        depends_on:
+            - db
+            - redis
+            - rabbitmq
+        command: ["sh", "-c", "cd /var/www && php artisan queue:work"]
 networks:
     app-network:
         driver: bridge
