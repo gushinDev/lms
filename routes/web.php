@@ -21,5 +21,5 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/send', function () {
-    \App\Jobs\MailJob::dispatch();
+    dd(\Illuminate\Support\Facades\Cache::set('kill', 2));
 });

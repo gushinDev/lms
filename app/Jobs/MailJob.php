@@ -19,7 +19,6 @@ class MailJob implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**
