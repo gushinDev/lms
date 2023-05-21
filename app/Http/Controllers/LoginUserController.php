@@ -26,11 +26,13 @@ class LoginUserController extends Controller
     public function login(LoginUserRequest $request): RedirectResponse
     {
         if (Auth::attempt($request->getUserLoginCredentials(), $request->needToRemember())) {
+            $request->session()->regenerate();
+
             return redirect(RouteServiceProvider::HOME);
         }
 
         return back()->withErrors([
             'username' => 'The provided credentials do not match our records.',
-        ])->withInput();
+        ])->onlyInput('username');
     }
 }

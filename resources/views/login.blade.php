@@ -36,12 +36,7 @@
                                    id="password"
                                    name="password"
                             >
-
-                            @error('password')
-                            <div id="passwordFeedback" class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
+                            <a href="{{route('password.request')}}">Forgot password ?</a>
                         </div>
                         <div class="form-group form-check mt-3 mb-3">
                             <input type="checkbox" class="form-check-input" id="remember-me" name="remember">
