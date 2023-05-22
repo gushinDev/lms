@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -82,5 +84,8 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/send', function () {
-    dd(\Illuminate\Support\Facades\Cache::set('kill', 2));
+    \Illuminate\Support\Facades\Cache::set('navigation:bar', DB::table('navigation_bar')->get(['menu_item_name', 'order_number', 'route_name']));
 });
+
+Route::get('admin', fn() => view('admin.index'))->name('admin.index');
+Route::get('admin/navigation-panel', fn () => view('admin.index'))->name('navigation');
