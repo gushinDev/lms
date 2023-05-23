@@ -2,7 +2,7 @@
     @foreach(collect(Cache::get('navigation:bar'))->sortBy('order_number') as $item)
         <li class="nav-item">
             <a href="{{route($item->route_name)}}"
-               class="nav-link @if($item->route_name === Route::currentRouteName()) active @else text-white @endif"
+               class="nav-link @if(Route::is($item->route_name)) active @else text-white @endif"
                aria-current="page">
                 {{$item->menu_item_name}}
             </a>

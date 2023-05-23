@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminNavigation;
 use App\Http\Controllers\LoginUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterUserController;
@@ -84,8 +85,9 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/send', function () {
-    \Illuminate\Support\Facades\Cache::set('navigation:bar', DB::table('navigation_bar')->get(['menu_item_name', 'order_number', 'route_name']));
+    \Illuminate\Support\Facades\Cache::set('navigation:bar', DB::table('navigation_bar')->get(['navigation_bar_id', 'menu_item_name', 'order_number', 'route_name']));
 });
 
 Route::get('admin', fn() => view('admin.index'))->name('admin.index');
-Route::get('admin/navigation-panel', fn () => view('admin.index'))->name('navigation');
+Route::get('admin/navigation-panel', [AdminNavigation::class, 'index'])->name('navigation');
+Route::delete('admin/navigation-panel', [AdminNavigation::class, 'delete'])->name('navigation.delete-item');
