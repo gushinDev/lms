@@ -4,12 +4,11 @@ use App\Http\Controllers\AdminNavigation;
 use App\Http\Controllers\LoginUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\UserController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -84,10 +83,5 @@ Route::group(['middleware' => 'guest'], function () {
     })->name('password.update');
 });
 
-Route::get('/send', function () {
-    \Illuminate\Support\Facades\Cache::set('navigation:bar', DB::table('navigation_bar')->get(['navigation_bar_id', 'menu_item_name', 'order_number', 'route_name']));
-});
-
-Route::get('admin', fn() => view('admin.index'))->name('admin.index');
 Route::get('admin/navigation-panel', [AdminNavigation::class, 'index'])->name('navigation');
-Route::delete('admin/navigation-panel', [AdminNavigation::class, 'delete'])->name('navigation.delete-item');
+Route::delete('admin/users', [UserController::class, 'index'])->name('users.index');
