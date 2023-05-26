@@ -15,31 +15,33 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm table-hover table-bordered ">
             <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Order number</th>
-                <th scope="col">Route name</th>
-                <th scope="col"></th>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center" >Username</th>
+                <th scope="col" class="text-center">Email</th>
+                <th scope="col" class="text-center"></th>
             </tr>
             </thead>
             <tbody>
-            {{--                    @foreach($navigationMenu as $item)--}}
-            {{--                        <tr style="vertical-align: baseline">--}}
-            {{--                            <td>{{$item->menu_item_name}}</td>--}}
-            {{--                            <td>{{$item->order_number}}</td>--}}
-            {{--                            <td>{{$item->route_name}}</td>--}}
-            {{--                            <td>--}}
-            {{--                                <form action="{{route('navigation.delete-item')}}" method="post">--}}
-            {{--                                    @csrf @method('delete')--}}
-            {{--                                    <input type="hidden" name="menu_item" value="{{$item->navigation_bar_id}}">--}}
-            {{--                                    <button type="submit" class="btn"><i class="fa fa-trash"></i></button>--}}
-            {{--                                </form>--}}
-            {{--                            </td>--}}
-            {{--                        </tr>--}}
-            {{--                    @endforeach--}}
+            @foreach($users as $user)
+                <tr style="vertical-align: baseline">
+                    <td class="text-center">{{$user->user_id}}</td>
+                    <td class="text-center">{{$user->username}}</td>
+                    <td class="text-center">{{$user->email}}</td>
+                    <td style="display: flex; align-items: center; justify-content: center">
+                        <a href="{{route('users.edit', ['user_id' => $user->user_id])}}"><i class="fa fa-edit" style="color: #1a202c"></i></a>
+                        <form action="{{route('users.delete')}}" method="post">
+                            @csrf @method('delete')
+                            <input type="hidden" name="menu_item" value="{{$user->user_id}}">
+                            <button type="submit" class="btn"><i class="fa fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
+        {{$users->onEachSide(0)->links()}}
     </div>
 @endsection

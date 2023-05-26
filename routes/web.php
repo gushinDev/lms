@@ -35,5 +35,9 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/reset-password', [PasswordResetController::class, 'setNewPassword'])->name('password.update');
 });
 
-Route::get('admin/navigation-panel', [AdminNavigation::class, 'index'])->name('navigation');
-Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('navigation-panel', [AdminNavigation::class, 'index'])->name('navigation');
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::delete('users', [UserController::class, 'delete'])->name('users.delete');
+    Route::get('users/{user_id}/edit', [UserController::class, 'edit'])->name('users.edit');
+});
