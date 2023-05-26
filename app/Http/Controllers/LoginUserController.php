@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,9 @@ class LoginUserController extends Controller
         return redirect('login');
     }
 
-    public function loginView()
+    public function loginForm(): View
     {
-
+        return view('login');
     }
 
     public function login(LoginUserRequest $request): RedirectResponse
