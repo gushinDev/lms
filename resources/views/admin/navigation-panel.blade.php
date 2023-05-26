@@ -1,11 +1,20 @@
-<ul class="nav nav-pills flex-column mb-auto">
-    @foreach(collect(Cache::get('navigation:bar'))->sortBy('order_number') as $item)
+<nav id="sidebarMenu" class="bg-dark col-lg-2" style="height: 100vh">
+    <h2 class="text-white mt-3 mb-3">Main page</h2>
+    <hr style="color: white">
+    <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="{{route($item->route_name)}}"
-               class="nav-link @if(Route::is($item->route_name)) active @else text-white @endif"
+            <a href="{{route('navigation')}}"
+               class="nav-link text-white "
                aria-current="page">
-                {{$item->menu_item_name}}
+                Navigation
             </a>
         </li>
-    @endforeach
-</ul>
+        <li class="nav-item">
+            <a href="{{route('navigation')}}"
+               class="nav-link text-white "
+               aria-current="page">
+                Users
+            </a>
+        </li>
+    </ul>
+</nav>
