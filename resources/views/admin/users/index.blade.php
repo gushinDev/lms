@@ -4,28 +4,32 @@
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Users</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+    </div>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Settings
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="input-group w-25">
+                        <label class="input-group-text" for="inputGroupSelect01">Export</label>
+                        <select class="form-select" id="inputGroupSelect01" aria-label="Example select with button addon">
+                            <option selected>Choose...</option>
+                            <option value="1">Xlsx</option>
+                            <option value="2">Json</option>
+                            <option value="3">Csv</option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="button">Start</button>
+                    </div>
+                </div>
             </div>
-            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                This week
-            </button>
         </div>
     </div>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach
-        </div>
-    @elseif(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    <div class="table-responsive">
+    @include('admin.messages')
+    <div class="table-responsive mt-2">
         <table class="table table-striped table-sm table-hover table-bordered ">
             <thead>
             <tr>
@@ -58,6 +62,20 @@
             </tbody>
         </table>
         {{$users->onEachSide(0)->links()}}
+    </div>
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Pomodoro timer</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div><h2 id="timer">25:00</h2></div>
+            <button type="button" class="btn btn-success" onclick="startTimer()">Start</button>
+            <button type="button" class="btn btn-warning" onclick="stopTimer()">Stop</button>
+            <button type="button" class="btn btn-danger" onclick="resetTimer()">Reset</button>
+        </div>
     </div>
     @include('admin.users.scripts')
 @endsection
