@@ -36,7 +36,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('navigation-panel', [AdminNavigation::class, 'index'])->name('navigation');
+    Route::get('/', [UserController::class, 'index'])->name('admin.index');
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::delete('users', [UserController::class, 'delete'])->name('users.delete');
     Route::get('users/{user_id}/edit', [UserController::class, 'edit'])->name('users.edit');
