@@ -8,22 +8,29 @@
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     Settings
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <div class="input-group w-25">
-                        <label class="input-group-text" for="inputGroupSelect01">Export</label>
-                        <select class="form-select" id="inputGroupSelect01" aria-label="Example select with button addon">
-                            <option selected>Choose...</option>
-                            <option value="1">Xlsx</option>
-                            <option value="2">Json</option>
-                            <option value="3">Csv</option>
-                        </select>
-                        <button class="btn btn-outline-secondary" type="button">Start</button>
-                    </div>
+                    <form action="{{route('users.export')}}" method="POST">
+                        @csrf
+                        <div class="input-group w-25">
+                            <label class="input-group-text" for="inputGroupSelect01">Export</label>
+                            <select class="form-select" id="inputGroupSelect01"
+                                    aria-label="Example select with button addon"
+                                    name="users_export_file_type">
+                                <option selected>Choose...</option>
+                                <option value="xlsx">Xlsx</option>
+                                <option value="json">Json</option>
+                                <option value="csv">Csv</option>
+                            </select>
+                            <button class="btn btn-outline-secondary" type="submit">Start</button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -46,8 +53,9 @@
                     <td class="text-center">{{$user->username}}</td>
                     <td class="text-center">{{$user->email}}</td>
                     <td style="display: flex; align-items: center; justify-content: center">
-                        <a href="{{route('users.edit', ['user_id' => $user->user_id])}}"><i class="fa fa-edit"
-                                                                                            style="color: #1a202c"></i></a>
+                        <a href="{{route('users.edit', ['user_id' => $user->user_id])}}">
+                            <i class="fa fa-edit" style="color: #1a202c"></i>
+                        </a>
                         @if(Auth::id() !== $user->user_id)
                             <form action="{{route('users.delete')}}" method="post" id="delete-form[{{$user->user_id}}]">
                                 @csrf @method('delete')
@@ -63,7 +71,9 @@
         </table>
         {{$users->onEachSide(0)->links()}}
     </div>
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight">Toggle right offcanvas
+    </button>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
