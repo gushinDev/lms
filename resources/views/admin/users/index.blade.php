@@ -5,6 +5,7 @@
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Users</h1>
     </div>
+    @include('admin.messages')
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header">
@@ -35,7 +36,6 @@
             </div>
         </div>
     </div>
-    @include('admin.messages')
     <div class="table-responsive mt-2">
         <table class="table table-striped table-sm table-hover table-bordered ">
             <thead>
