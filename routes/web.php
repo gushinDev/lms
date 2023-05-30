@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminNavigation;
 use App\Http\Controllers\LoginUserController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\ProfileController;
