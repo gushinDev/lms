@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserExportController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', fn() => view('welcome'))->name('main');
@@ -42,4 +44,18 @@ Route::group(['prefix' => 'admin'], function () {
     Route::delete('users', [UserController::class, 'delete'])->name('users.delete');
     Route::get('users/{user_id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::post('users/export', [UserExportController::class, 'export'])->name('users.export');
+});
+
+Route::get('/send', function() {
+    $connection = new AMQPStreamConnection(env('RABBITMQ_HOST'), 5672, 'local', 'local');
+    $channel = $connection->channel();
+    $channel->queue_declare('hello', false, false, false, false);
+
+    $arr = [2,3,5];
+    $str = json_encode($arr);
+
+    $msg = new AMQPMessage($str);
+    $channel->basic_publish($msg, '', 'hello');
+    $channel->close();
+    $connection->close();
 });
