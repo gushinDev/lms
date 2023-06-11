@@ -20,7 +20,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control @error('username')is-invalid @enderror" id="username"
+                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username"
                                    name="username"
                                    value="{{ old('username') }}"
                             >
