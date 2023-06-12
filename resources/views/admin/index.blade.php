@@ -18,6 +18,8 @@
             @yield('content')
         </main>
     </div>
+    @include('admin.tools.pomodoro')
+    @include('admin.tools.pomodoro-script')
 </div>
 </body>
 </html>
