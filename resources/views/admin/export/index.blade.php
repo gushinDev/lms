@@ -14,7 +14,7 @@
                 <th scope="col" class="text-center">Type</th>
                 <th scope="col" class="text-center">File name</th>
                 <th scope="col" class="text-center">Progress</th>
-                <th scope="col" class="text-center">Download</th>
+                <th scope="col" class="text-center"></th>
             </tr>
             </thead>
             <tbody>
@@ -23,8 +23,13 @@
                     <td class="text-center">{{$export->export_id}}</td>
                     <td class="text-center">{{$export->export_type}}</td>
                     <td class="text-center">{{$export->file_name}}</td>
-                    <td class="text-center">{{$export->progress}}</td>
-                    <td class="text-center">{{$export->download_link}}</td>
+                    <td class="text-center text-white bg-opacity-75" >
+                        @if($export->progress === 100)
+                            <a class="btn btn-success p-1" href="{{route('export.download', ['export_id' => $export->export_id])}}">Download</a>
+                        @else
+                            <button class="btn btn-warning">{{'In progress'}}</button>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>

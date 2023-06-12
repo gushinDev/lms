@@ -10,4 +10,5 @@ Route::get('users', [UserController::class, 'index'])->name('users.index');
 Route::delete('users', [UserController::class, 'delete'])->name('users.delete');
 Route::get('users/{user_id}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::post('users/export', [UserExportController::class, 'export'])->name('users.export');
-Route::get('/export', [ExportController::class, 'index'])->name('export.index');
+Route::get('/exports', [ExportController::class, 'index'])->name('export.index');
+Route::get('/exports/{export_id}', [ExportController::class, 'download'])->name('export.download');
