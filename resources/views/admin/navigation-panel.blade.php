@@ -9,5 +9,15 @@
                 Users
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{route('export.index')}}"
+               class="nav-link text-white "
+               aria-current="page">
+                Exports
+            </a>
+        </li>
+        <li class="nav-item">
+            @include('admin.tools.pomodoro')
+        </li>
     </ul>
 </nav>
