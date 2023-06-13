@@ -37,13 +37,24 @@
         </div>
     </div>
     <div class="table-responsive mt-2">
-        <table class="table table-striped table-sm table-hover table-bordered ">
+        <table class="table table-striped table-sm table-hover table-bordered">
             <thead>
             <tr>
-                <th scope="col" class="text-center">#</th>
-                <th scope="col" class="text-center">Username</th>
-                <th scope="col" class="text-center">Email</th>
-                <th scope="col" class="text-center"></th>
+                <th scope="col" class="text-center">
+                    <a href="{{route('users.index', ['sort_by' => 'user_id', 'sort_direction' => $sortDirectionId ?? 'asc'])}}">
+                        #
+                    </a>
+                </th>
+                <th scope="col" class="text-center">
+                    <a href="{{route('users.index', ['sort_by' => 'username', 'sort_direction' => $sortDirectionUsername ?? 'asc'])}}">
+                        Username
+                    </a>
+                </th>
+                <th scope="col" class="text-center">
+                    <a href="{{route('users.index', ['sort_by' => 'email', 'sort_direction' => $sortDirectionEmail ?? 'asc'])}}">
+                        Email
+                    </a>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -63,7 +74,6 @@
                                 <button type="submit" class="btn btn-delete"><i class="fa fa-trash"></i></button>
                             </form>
                         @endif
-
                     </td>
                 </tr>
             @endforeach
