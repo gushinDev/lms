@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use App\Repositories\UserRepository;
+use App\Models\User;
 
 class UserService
 {
-    public function __construct(protected UserRepository $userRepository)
+    public function __construct(protected User $user)
     {
     }
 
     public function deleteUser(int $userId): ?bool
     {
-        return $this->userRepository->deleteUser($userId);
+        return $this->user->findOrFail($userId)->delete();
     }
 }
