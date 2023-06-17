@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserExportController;
 use Illuminate\Support\Facades\Route;
@@ -12,3 +13,4 @@ Route::get('users/{user_id}/edit', [UserController::class, 'edit'])->name('users
 Route::post('users/export', [UserExportController::class, 'export'])->name('users.export');
 Route::get('/exports', [ExportController::class, 'index'])->name('export.index');
 Route::get('/exports/{export_id}', [ExportController::class, 'download'])->name('export.download');
+Route::get('/articles', [PostController::class, 'index'])->name('admin.articles.index');

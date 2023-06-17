@@ -1,10 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Exports</h1>
-    </div>
+    @include('admin.components.content-header', ['header_name' => 'Exports'])
     @include('admin.messages')
     <div class="table-responsive mt-2">
         <table class="table table-striped table-sm table-hover table-bordered ">

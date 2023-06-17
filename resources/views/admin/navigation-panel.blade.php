@@ -17,6 +17,13 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{route('admin.articles.index')}}"
+               class="nav-link text-white "
+               aria-current="page">
+                Articles
+            </a>
+        </li>
+        <li class="nav-item">
             @include('admin.tools.pomodoro')
         </li>
     </ul>

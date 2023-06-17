@@ -1,10 +1,7 @@
 @extends('admin.index')
 
 @section('content')
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Users</h1>
-    </div>
+    @include('admin.components.content-header', ['header_name' => 'Users'])
     @include('admin.messages')
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
@@ -31,7 +28,6 @@
                             <button class="btn btn-outline-secondary" type="submit">Start</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
