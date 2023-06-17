@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('navigation_bar', function (Blueprint $table) {
-            $table->id('navigation_bar_id');
-            $table->string('menu_item_name');
-            $table->unsignedSmallInteger('order_number');
-            $table->string('route_name');
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id('post_id');
+            $table->string('title');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('navigetion_bar');
+        Schema::dropIfExists('posts');
     }
 };

@@ -13,4 +13,4 @@ Route::get('users/{user_id}/edit', [UserController::class, 'edit'])->name('users
 Route::post('users/export', [UserExportController::class, 'export'])->name('users.export');
 Route::get('/exports', [ExportController::class, 'index'])->name('export.index');
 Route::get('/exports/{export_id}', [ExportController::class, 'download'])->name('export.download');
-Route::get('/articles', [PostController::class, 'index'])->name('admin.articles.index');
+Route::get('/posts', [PostController::class, 'index'])->name('admin.posts.index');

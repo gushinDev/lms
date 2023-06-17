@@ -3,7 +3,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0">
                 <li><a href="{{route('main')}}" class="nav-link px-2 link-body-emphasis">Main</a></li>
-                <li><a href="{{route('articles')}}" class="nav-link px-2 link-body-emphasis">Articles</a></li>
+                <li><a href="{{route('posts')}}" class="nav-link px-2 link-body-emphasis">Posts</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">

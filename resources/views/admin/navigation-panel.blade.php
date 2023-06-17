@@ -17,10 +17,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.articles.index')}}"
+            <a href="{{route('admin.posts.index')}}"
                class="nav-link text-white "
                aria-current="page">
-                Articles
+                Posts
             </a>
         </li>
         <li class="nav-item">
