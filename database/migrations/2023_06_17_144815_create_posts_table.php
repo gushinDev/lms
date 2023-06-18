@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('post_id');
             $table->string('title');
             $table->text('content');
+            $table->unsignedInteger('duration');
             $table->timestamps();
         });
     }
