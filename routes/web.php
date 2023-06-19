@@ -5,6 +5,8 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 
+Route::get('/test', fn() => view('post-form'));
+
 Route::get('/send', function() {
     $connection = new AMQPStreamConnection(env('RABBITMQ_HOST'), 5672, 'local', 'local');
     $channel = $connection->channel();
