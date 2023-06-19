@@ -15,14 +15,14 @@ class AminPostController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.posts.create');
     }
 
     public function store(StorePostRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     public function show(Post $post)

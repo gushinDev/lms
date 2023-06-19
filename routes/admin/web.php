@@ -14,3 +14,5 @@ Route::post('users/export', [UserExportController::class, 'export'])->name('user
 Route::get('/exports', [ExportController::class, 'index'])->name('export.index');
 Route::get('/exports/{export_id}', [ExportController::class, 'download'])->name('export.download');
 Route::get('/posts', [AminPostController::class, 'index'])->name('admin.posts.index');
+Route::get('/posts/create', [AminPostController::class, 'create'])->name('admin.posts.create');
+Route::post('/posts', [AminPostController::class, 'store'])->name('admin.posts.store');
