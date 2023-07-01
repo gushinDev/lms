@@ -23,4 +23,9 @@ class Post extends Model
     {
         return Attribute::make(get: fn(string $value) => "$value min.");
     }
+
+    public function users()
+    {
+        return $this->hasOneThrough();
+    }
 }

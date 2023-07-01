@@ -22,7 +22,10 @@ class AminPostController extends Controller
 
     public function store(StorePostRequest $request)
     {
-        dd($request->all());
+
+        return response()->json([
+            'message' => $request->all()
+        ], 200);
     }
 
     public function show(Post $post)
