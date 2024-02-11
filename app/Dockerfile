@@ -25,7 +25,7 @@ COPY . .
 # Get latest Composer
 # COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    composer install --optimize-autoloader --no-dev
+    composer install --optimize-autoloader 
 
 # Create system user to run Composer and Artisan Commands
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
