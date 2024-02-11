@@ -1,0 +1,55 @@
+version: '3.7'
+services:
+  api-nginx:
+    image: nginx:alpine
+    container_name: api-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - network
+
+  api:
+    build:
+      args:
+        user: eu
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    container_name: api
+    restart: unless-stopped
+    working_dir: /var/www/
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www
+    networks:
+      - network
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browse Movies</title>
+</head>
+<body>
+<h2>Movies</h2>
+
+@forelse ($movies as $movie)
+    <p>
+        Title: {{ $movie->name }}<br>
+        Year: {{ $movie->year }}<br>
+        Runtime: {{ $movie->runtime }}<br>
+    </p>
+@empty
+    <p>No results</p>
+@endforelse
+
+</body>
+</html>

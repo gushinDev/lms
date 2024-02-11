@@ -1,0 +1,50 @@
+version: '3.7'
+services:
+    lrs-nginx:
+        image: nginx:alpine
+        container_name: lrs-nginx
+        restart: unless-stopped
+        ports:
+            - "8001:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx:/etc/nginx/conf.d/
+        networks:
+            - network
+
+    lrs:
+        build:
+            args:
+                user: eu
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        container_name: lrs
+        restart: unless-stopped
+        working_dir: /var/www/
+        links:
+            - lrs-db
+        depends_on:
+            - lrs-db
+        volumes:
+            - ./:/var/www
+        networks:
+            - network
+
+    lrs-db:
+        image: mongo:latest
+        container_name: lrs-db
+        restart: unless-stopped
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongo_data:/data/db
+        networks:
+            - network
+
+networks:
+    network:
+        driver: bridge
+
+volumes:
+    mongo_data:

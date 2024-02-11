@@ -1,0 +1,100 @@
+version: '3.7'
+services:
+  app-nginx:
+    image: nginx:alpine
+    container_name: app-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/var/www
+      - ./app/docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - network
+
+  app:
+    build:
+      args:
+        user: eu
+        uid: 1000
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: app
+    restart: unless-stopped
+    working_dir: /var/www/
+    depends_on:
+      - db
+    volumes:
+      - ./app:/var/www
+    networks:
+      - network
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    env_file:
+      - ./app/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: local-password
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: local-user
+      MYSQL_PASSWORD: local-password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    networks:
+      - network
+
+  lrs-nginx:
+    image: nginx:alpine
+    container_name: lrs-nginx
+    restart: unless-stopped
+    ports:
+      - "8001:80"
+    volumes:
+      - ./lrs:/var/www
+      - ./lrs/docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - network
+
+  lrs:
+    build:
+      args:
+        user: eu
+        uid: 1000
+      context: ./lrs
+      dockerfile: Dockerfile
+    container_name: lrs
+    restart: unless-stopped
+    working_dir: /var/www/
+    links:
+      - lrs-db
+    depends_on:
+      - lrs-db
+    volumes:
+      - ./lrs:/var/www
+    networks:
+      - network
+
+  lrs-db:
+    image: mongo:latest
+    container_name: lrs-db
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  mongo_data:
+
+
